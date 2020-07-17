@@ -17,7 +17,7 @@ class LinkedList:
         self.head = None
 
     def add_to_head(self, value):
-        node = Node(value)
+        node = Node(value, next_node=None)
 
         if self.head is not None:
             node.set_next(self.head)
@@ -39,4 +39,31 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        # if nothing exists, do nothing, do not reverse
+        
+        
+        if node is None:
+            return 
+        # when the next node is None, set the current node to head node
+        # and that head nodes.next will point to this node called prev
+        # previous is set to None
+
+        if node.next_node is None:
+            self.head = node
+
+            
+            node.next_node = prev
+            return prev 
+       
+
+        # reverse_list function is scrolling down the line, until it reaches the end
+        # when it reaches the end, it sets the node equal to the head, and sets the heads next
+        # if base case is met, function returns previous node
+
+        # new_node is a pointer , pointing to the nodes next node
+        # nodes next node is equal to prev, which is a node        
+        new_node = node.next_node
+        node.next_node = prev
+        
+
+        self.reverse_list(new_node, node)
