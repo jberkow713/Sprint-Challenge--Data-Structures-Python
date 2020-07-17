@@ -47,6 +47,8 @@ class LinkedList:
         # when the next node is None, set the current node to head node
         # and that head nodes.next will point to this node called prev
         # previous is set to None
+        # but if prev is set to None, and is self.heads next node, then prev has to mean
+        # opposite direction of next, as in not pointing normal route
 
         if node.next_node is None:
             self.head = node
@@ -56,14 +58,18 @@ class LinkedList:
             return self.head 
        
 
-        # reverse_list function is scrolling down the line, swapping the 
-        # pointers between an item and it's next,  until it reaches the end
-        # when it reaches the end, it sets the node before null equal to the head and returns
-        # the linked list
+        #since prev means opposite direction of next, we can establish new variable called 
+        #new_node, make it mean pointer of node, and set pointer of node to prev, meaning
+        #new_node is pointing in opposite direction 
 
-               
+        # start of function       
         new_node = node.next_node
+        # updating next node
         node.next_node = prev
         
+        # reverse list is just scrolling through to find the end of the line, then labeling 
+        #last element in that line as head
+        # so when you call it recursively on this reverse direction, with node, its basically
+        #heading opposite way from the head, down the line, swapping directions as it goes
 
         self.reverse_list(new_node, node)
