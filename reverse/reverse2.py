@@ -38,7 +38,7 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
+    def reverse_list(self, node):
         # if nothing exists, do nothing, do not reverse
         
         
@@ -52,18 +52,18 @@ class LinkedList:
             self.head = node
 
             
-            node.next_node = prev
-            return self.head 
+            node.next_node = None 
+            return self.head  
        
 
-        # reverse_list function is scrolling down the line, swapping the 
-        # pointers between an item and it's next,  until it reaches the end
-        # when it reaches the end, it sets the node before null equal to the head and returns
-        # the linked list
+        # reverse_list function is scrolling down the line, until it reaches the end
+        # when it reaches the end, it sets the node before null equal to the head
 
-               
-        new_node = node.next_node
-        node.next_node = prev
-        
+        # new_node is a pointer , pointing to the nodes next node
+        # nodes next node is equal to prev, which is a node        
+        new_node = node.next_node.next_node 
+        new_node = node.next_node 
+        node.next_node = None 
+       
 
         self.reverse_list(new_node, node)
